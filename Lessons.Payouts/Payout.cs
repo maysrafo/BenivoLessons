@@ -11,6 +11,8 @@ namespace Lessons.Payouts
         public static void Withdraw(int amount)
         {
             Console.WriteLine($"Your {amount}$ is withdrawn successfully ");
+            Console.WriteLine($"Your {amount}$ is withdrawn successfully ");
+
         }
     }
 }

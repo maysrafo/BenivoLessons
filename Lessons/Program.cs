@@ -39,12 +39,12 @@ namespace Lessons
                 //Email Address input
                 Console.ResetColor();
                 Console.WriteLine("Please enter your email :");
-                string firstEmailInput = EmailAddress();
+                string EmailInput = EmailAddress();
                 Console.Clear();
 
                 //Validation email Address
                 Regex regexEmail = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
-                Match matchEmail = regexEmail.Match(firstEmailInput);
+                Match matchEmail = regexEmail.Match(EmailInput);
                 if (matchEmail.Success)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
@@ -57,9 +57,9 @@ namespace Lessons
                     Console.WriteLine(" Your Email format is incorrect, try again");
 
                     Console.ResetColor();
-                    string secondEmailInput = EmailAddress();
+                    EmailInput = EmailAddress();
                     Console.Clear();
-                    Match matchEmail1 = regexEmail.Match(secondEmailInput);
+                    Match matchEmail1 = regexEmail.Match(EmailInput);
 
                     if (matchEmail1.Success)
                     {
@@ -104,13 +104,13 @@ namespace Lessons
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please Enter a valid password");
                     Console.ResetColor();
-                    string passResult = UserPassword();
+                    userPassword = UserPassword();
                     Console.Clear();
                     var hasNumber1 = new Regex(@"[0-9]+");
                     var hasUpperChar1 = new Regex(@"[A-Z]+");
                     var hasMinimum8Chars1 = new Regex(@".{8,}");
 
-                    bool isValidated1 = hasNumber1.IsMatch(passResult) && hasUpperChar1.IsMatch(passResult) && hasMinimum8Chars1.IsMatch(passResult);
+                    bool isValidated1 = hasNumber1.IsMatch(userPassword) && hasUpperChar1.IsMatch(userPassword) && hasMinimum8Chars1.IsMatch(userPassword);
 
                     if (isValidated1)
                     {
@@ -138,7 +138,7 @@ namespace Lessons
                 string firstName = UserFirstName();
 
                 //firstname validation
-                if (Regex.Match(firstName, "^[A-Z][a-zA-Z]*$").Success)
+                if (!Regex.Match(firstName, "^[A-Z][a-zA-Z]*$").Success)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please do not use numbers in your name next time :)");
@@ -158,7 +158,7 @@ namespace Lessons
                 string lastname = UserLastName();
 
                 //lastname validation
-                if (Regex.Match(lastname, "^[A-Z][a-zA-Z]*$").Success)
+                if (!Regex.Match(lastname, "^[A-Z][a-zA-Z]*$").Success)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Please do not use numbers in your name next time :)");
@@ -217,7 +217,7 @@ namespace Lessons
 
                 //Return Output
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"Hi {firstName} {lastname}, you are registered with account {firstEmailInput}. Your born date  is {dt}");
+                Console.WriteLine($"Hi {firstName} {lastname}, you are registered with account {EmailInput}. Your born date  is {dt}");
 
                 DateTime today = DateTime.Now;
 
@@ -233,7 +233,7 @@ namespace Lessons
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"\n\nBut a quick note to you, You are sharper you have deceived us that you are {age} years old");
+                    Console.WriteLine($"\n\nBut a quick note, You are sharper you have deceived us that you are {age} years old");
 
                 }
 
@@ -271,6 +271,13 @@ namespace Lessons
         {
             string inputLastName = Console.ReadLine();
             return inputLastName;
+        }
+
+        //My new operators
+        public static string EnevOdd()
+        {
+            int i;
+            int.TryParse(string i)
         }
     }
 }

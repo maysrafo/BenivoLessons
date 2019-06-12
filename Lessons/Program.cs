@@ -9,99 +9,83 @@ namespace Lessons
     {
         static void Main()
         {
-            //Intializing new user input and converting to float
-            Console.WriteLine("Welcome to online payment system, Please input your amount below");
+            Console.Write("n = ");
+            int n = UserInputNumber();
+            Console.Write("c = ");
+            char c = UserInputCharacter();
+            Console.Clear();
 
-            //User input validation
-            string userInput = AskForInput();
-            float amount;
-            if (float.TryParse(userInput, out amount))
+
+            //Show the results
+            for (int i = 0; i < n; i++)
             {
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
-                Console.WriteLine("Please select a payment method:\nVisa       MasterCard       PayPal");
-                Console.ResetColor();
-                string paymentMethod = Console.ReadLine();
-                Console.Clear();
-
-                //Handle Payment Methods
-                switch (paymentMethod)
+                for (int j = 0; j <= n / 2; j++)
                 {
-                    case "Visa":
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.WriteLine("Please input your cvv code");
-                        Console.ResetColor();
-
-                        //Ask for cvv code
-                        string cvvCode = Console.ReadLine();
-                        int code;
-                        if (int.TryParse(cvvCode, out code) && cvvCode.Length == 3)
-                        {
-                            Console.WriteLine($"You are trying to process {amount}, Enter to confirm");
-                            Console.ReadLine();
-                            Console.Clear();
-                            Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine("Your payment is processed successfully");
-                        }
-                        else
-                        {
-                            Console.WriteLine("cvv code should contain only 3 numbers");
-                        }                    
-
-                        break;
-
-                    case "MasterCard":
-
-                        //Discount the amount by 5 %
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.WriteLine($"Please note that your amount({amount}) will be discounted by 5 %\nEnter to continue");
-                        Console.ResetColor();
-                        Console.ReadLine();
-                        Console.Clear();
-
-                        amount = amount - (amount * 5 / 100);
-                        Console.WriteLine($"Your amount is discounted to {amount}, Enter to confirm");
-                        Console.ReadKey();
-
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Your payment is processed successfully");    
-                        
-                        break;
-
-                        //Add 2% service fee
-                    case "PayPal":
-                        Console.ForegroundColor = ConsoleColor.Magenta;
-                        Console.WriteLine("Please note that PayPal will use 2% service fee,Enter to continue");
-                        Console.ReadKey();
-                        Console.Clear();
-
-                        float fee = (amount * 2 / 100);
-                        float result = fee + amount;
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine($"Your amount is {amount} , and PayPal service fee is {fee}\n{amount} + {fee} = {result}");
-                                            
-                        break;
-                    default:
-                        Console.WriteLine("Please input correct method name");
-                        break;
+                    
+                    Console.Write(c);
+                    
 
                 }
+                
+                Console.WriteLine();
             }
-            else
-            {
-                Console.WriteLine("Please use only numbers");
+           
 
-
-            }
-  
 
         }
-        //Function to Ask the user to input amount
-        public static string AskForInput()
+
+        //Function which will get userInput, validate it and return n
+        public static int UserInputNumber()
         {
-            string userInput = Console.ReadLine();
-            return userInput;
+            int t = Convert.ToInt32(Console.ReadLine());
+            while (t % 2 == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Please do not use Even numbers");
+                Console.ResetColor();
+                Console.Write("n = ");
+                int b = Convert.ToInt32(Console.ReadLine());
+                
+
+                if (b % 2 == 1)
+                {
+                    Console.Clear();
+                    t = b;
+                    break;
+                }
+
+            }
+            return t;
+        }
+                       
+
+        //Function which will get userInput, validate it and return c
+        public static char UserInputCharacter()
+        {
+            string input = Console.ReadLine();
+            char c;
+
+            while (input.Equals(null) || input.Equals(" ") || input.ToString().Length > 1)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Try again");
+                Console.ResetColor();
+                Console.Write("c = ");
+
+                string secondTry = Console.ReadLine();
+                if (!input.Equals(null) || !input.Equals(" ") || input.ToString().Length <= 1)
+                {
+                    c = Convert.ToChar(secondTry);
+                    break;
+                }
+               
+
+            }
+
+            c = Convert.ToChar(input);
+
+            return c;
         }
 
-        
     }
 }

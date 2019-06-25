@@ -9,113 +9,54 @@ namespace Lessons
     {
         static void Main()
         {
-            Console.Write("n = ");
-            int n = UserInputNumber();
+            //Declare new array for Prices
+            int[] prices = new int[5];
 
-            Console.Write("c = ");
-            char c = UserInputCharacter();
+            //Ask the user to input an array
+            Console.WriteLine("Please Enter you product prices");
+            for (int i = 0; i < prices.Length; i++)
+            {
+                //Validating user input
+                bool isValidInput = int.TryParse(Console.ReadLine(), out prices[i]);
+                while (!isValidInput)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Please enter only number, Try again");
 
-            char space = ' ';
+                    Console.ResetColor();
+                    isValidInput = int.TryParse(Console.ReadLine(), out prices[i]);
+                    
+                }
+                
+            }
 
             Console.Clear();
+            //Declare new array for Stores
+            string[] stores = new string[5];
 
-
-            //Show the results
-            for (int i = 0; i <= n; i++)
-
+            //Ask the user to input an array for Stores
+            Console.WriteLine("Please Enter you Store names");
+            for (int i = 0; i < stores.Length; i++)
             {
-                if (i < n / 2 + 1)
-                {
-                    for (int j = 0; j < (n / 2 - i); j++)
-                    {
-                        Console.Write(space);
-                    }
-
-                    for (int k = 0; k < 2 * i - 1; k++)
-                    {
-                        Console.Write(c);
-                    }
-                }
-                else
-                {
-                    for (int t = 0; t <= i - 1 - n / 2; t++)
-                    {
-                        Console.Write(space);
-                    }
-
-                    
-                    for (int p = 1; p <= (3 * Math.Abs(n - i) - 1) / 2  ; p++)
-                    {
-                        
-                        Console.Write(c);
-                    }
-
-                    
-                }
+                stores[i] = Console.ReadLine();
                 
-
-                Console.WriteLine();
             }
+            Console.Clear();
+
+            int result1 = Math.Min(prices[0], prices[1]);
+            int result2 = Math.Min(prices[2], prices[3]);
+            int result3 = Math.Min(result2, prices[4]);
+            int result = Math.Min(result1, result3);
+
+            int target = 0;
+            
+            Console.WriteLine(result);
 
 
-            //Keep it simple! == KIS
-           
+
+
+
+
         }
-
-        //Function which will get userInput, validate it and return n
-        public static int UserInputNumber()
-        {
-            int t = Convert.ToInt32(Console.ReadLine());
-
-            while (t % 2 == 0)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Please do not use Even numbers");
-
-                Console.ResetColor();
-                Console.Write("n = ");
-                int b = Convert.ToInt32(Console.ReadLine());
-                
-                if (b % 2 == 1)
-                {
-                    Console.Clear();
-                    t = b;
-                    break;
-                }
-
-            }
-
-            return t;
-        }
-                       
-
-        //Function which will get userInput, validate it and return c
-        public static char UserInputCharacter()
-        {
-            string input = Console.ReadLine();
-            char c;
-
-            while (input.Equals(null) || input.Equals(" ") || input.Length > 1)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("Try again");
-                Console.ResetColor();
-                Console.Write("c = ");
-
-                string secondTry = Console.ReadLine();
-                if (!input.Equals(null) || !input.Equals(" ") || input.ToString().Length <= 1)
-                {
-                    c = Convert.ToChar(secondTry);
-                    break;
-                }
-               
-
-            }
-
-            c = Convert.ToChar(input);
-
-            return c;
-        }
-
-    }
+    }   
 }

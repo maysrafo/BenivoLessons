@@ -8,10 +8,10 @@ namespace Lessons.Payouts
 {
     public class Payout
     {
-        public static void Withdraw(int amount)
+        
+
+        public static void Pay()
         {
-            Console.WriteLine($"Your {amount}$ is withdrawn successfully ");
-            Console.WriteLine($"Your {amount}$ is withdrawn successfully ");
 
         }
     }
